@@ -1,16 +1,20 @@
-function VisualizadorProps({ tasks, onToggle }) {
+function VisualizadorProps({ tasks, onToggle, onDelete }) {
 
   return (
     <ul>
-      <checkbox></checkbox>
       {tasks.map((task, index) => (
         <li key={index} style={{ textDecoration: task.completed ? "line-through" : "none" }}>
-          <input
-            type="checkbox"
-            checked={task.completed}
-            onChange={() => onToggle(index)}
-          />
-          {task.text}
+          <label htmlFor="input-checkbox">
+            <input
+              type="checkbox"
+              id="input-checkbox"
+              checked={task.completed}
+              onChange={() => onToggle(index)}
+            />
+            <span>{task.text}</span>
+          </label>
+          
+          <button onClick={() => onDelete(index)}>Eliminar</button>
         </li>
       ))}
     </ul>
